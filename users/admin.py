@@ -1,5 +1,7 @@
 # django
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.models import User
 
 # local
 from users.models import Profile
@@ -31,3 +33,33 @@ class ProfileAdmin(admin.ModelAdmin):
         'user__is_active',
         'user__is_staff'
     )
+
+    fieldsets = (
+        ('Profile', {
+            'fields': ('user', 'picture')
+        }),
+        ('Extra Info', {
+            'fields': (
+                ('website', 'phone_number'), 
+                'biography')
+        }),
+        ('Meta Data',{
+            'fields': (('created', 'modify'))
+        })
+    )
+
+    readonly_fields = ('created', 'modify')
+
+# Para que el Profile y el User estén justos (no es sistemas a parte) creamos esta clase
+
+class ProfileInline(admin.StackedInline):
+    model = Profile
+    can_delete = False
+    verbose_name_plural = 'profiles'
+
+class UserAdmin(BaseUserAdmin):
+    inlines = (ProfileInline,)
+
+admin.site.unregister(User)
+# Lo volvemos a registrar pero con el administrador nuevo
+admin.site.register(User, UserAdmin)
