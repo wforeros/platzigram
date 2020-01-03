@@ -1,0 +1,33 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg fixed-top" id="main-navbar">
+    <div class="container">
+
+        <a href="" class="navbar-brand pr-5" style="max-height: 20%; border-right: 1px solid #efefef;">
+            <img src="{% static 'img/instagram.webp' %}" alt="">
+        </a>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                
+                <li class="nav-item">
+                    <a href="">
+                        <img src="{% static 'img/default-profile.webp' %}" alt="" class="d-inline-block align-top rounded-circle"
+                        style='max-height: 50px;'>
+                    </a>
+                </li>
+
+                <li class="nav-item nav-icon">
+                    <a href="">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item nav-icon">
+                    <a href="">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
