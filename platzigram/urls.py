@@ -15,6 +15,9 @@ Including another URLconf
 """
 # django
 from django.contrib import admin
+# Para que se vean las imágenes bien 
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path
 
 # Local
@@ -28,6 +31,6 @@ urlpatterns = [
     # Aquí vemos otra forma de pasar variables en nuestra url con django
     path('hi/<str:name>/<int:age>/', local_views.say_hi),
     path('posts/', posts_views.list_posts)
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
