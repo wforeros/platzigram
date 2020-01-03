@@ -43,7 +43,7 @@ def signup(request):
             return render(request, 'users/signup.html', {'error': 'Password confirmation does not match'})
         
         try:
-            user = User.objects.create_user(username, password)
+            user = User.objects.create_user(username=username, password=password)
         except IntegrityError:
             return render(request, 'users/signup.html', {'error': 'Username is already registered'})
         
