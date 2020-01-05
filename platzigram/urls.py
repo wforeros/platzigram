@@ -31,7 +31,12 @@ urlpatterns = [
     path('sort/', local_views.sort_numbers, name='sort'),
     # Aquí vemos otra forma de pasar variables en nuestra url con django
     path('hi/<str:name>/<int:age>/', local_views.say_hi, name='hi'),
-    path('posts/', posts_views.list_posts, name='feed'),
+
+    # posts
+    path('', posts_views.list_posts, name='feed'),
+    path('posts/new', posts_views.create_post, name='create_post'),
+
+    # usuarios
     path('users/login/', users_views.login_view, name='login'),
     path('users/logout/', users_views.logout_view, name='logout'),
     path('users/signup/', users_views.signup, name='signup'),
