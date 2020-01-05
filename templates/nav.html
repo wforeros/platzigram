@@ -2,8 +2,8 @@
 <nav class="navbar navbar-expand-lg fixed-top" id="main-navbar">
     <div class="container">
 
-        <a href="" class="navbar-brand pr-5" style="max-height: 20%; border-right: 1px solid #efefef;">
-            <img src="{% static 'img/instagram.webp' %}" alt="">
+        <a href="{% url 'feed' %}" class="navbar-brand pr-5" style="border-right: 1px solid #efefef;">
+            <img src="{% static 'img/instagram.webp' %}" style="max-height: 50px;" alt="">
         </a>
 
         <div class="collapse navbar-collapse">
@@ -11,13 +11,18 @@
                 
                 <li class="nav-item">
                     <a href="">
+                        {% if request.user.profile.picture %}
+                        <img src="{{ request.user.profile.picture.url }}" alt="" class="d-inline-block align-top rounded-circle"
+                        style='max-height: 50px;'>
+                        {% else %}
                         <img src="{% static 'img/default-profile.webp' %}" alt="" class="d-inline-block align-top rounded-circle"
                         style='max-height: 50px;'>
+                        {% endif %}
                     </a>
                 </li>
 
                 <li class="nav-item nav-icon">
-                    <a href="">
+                    <a href="{% url 'create_post' %}">
                         <i class="fas fa-plus"></i>
                     </a>
                 </li>
