@@ -13,6 +13,7 @@ from users.models import Profile
 
 # Forms
 from users.forms import ProfileForm
+from users.forms import SignupForm
 
 
 def login_view(request):
@@ -39,26 +40,21 @@ def logout_view(request):
 
 def signup(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        password_confirm = request.POST['password_confirmation']
-        if password != password_confirm:
-            return render(request, 'users/signup.html', {'error': 'Password confirmation does not match'})
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    
+    else:
+        form = SignupForm()
         
-        try:
-            user = User.objects.create_user(username=username, password=password)
-        except IntegrityError:
-            return render(request, 'users/signup.html', {'error': 'Username is already registered'})
-        
-        user.first_name = request.POST['first_name']
-        user.last_name = request.POST['last_name']
-        user.email = request.POST['email']
-        user.save()
+    return render(
+        request, 
+        'users/signup.html', 
+        context={'form': form}
+    )
 
-        profile = Profile(user=user)
-        profile.save()
-        return redirect('login')
-    return render(request, 'users/signup.html')
+
 
 @login_required
 def update_profile(request):
