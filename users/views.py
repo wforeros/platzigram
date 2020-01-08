@@ -24,26 +24,25 @@ def login_view(request):
         if user:
             login(request, user)
             # Redirige a la url con nombre feed (urls.py)
-            return redirect('feed')
+            return redirect('posts:feed')
             
         else:
             # Return an 'invalid login' error message.
             return render(request, 'users/login.html', {'error': 'Invalid username or password'})
 
-        
     return render(request, 'users/login.html')
 
 @login_required
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('users:login')
 
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('users:login')
     
     else:
         form = SignupForm()
@@ -69,7 +68,7 @@ def update_profile(request):
             profile.picture = data['picture']
             profile.save()
             
-            return redirect('update_profile')
+            return redirect('users:update_profile')
     else:
         form = ProfileForm()
     return render(request, 
