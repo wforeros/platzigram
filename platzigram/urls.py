@@ -32,7 +32,7 @@ urlpatterns = [
     path('hi/<str:name>/<int:age>/', local_views.say_hi, name='hi'),
 
     # posts
-    path(r'test/', include(('posts.urls', 'posts'), namespace='posts')),
+    path(r'', include(('posts.urls', 'posts'), namespace='posts')),
 
     # usuarios
     path(r'users/', include(('users.urls', 'users'), namespace='users')),    
