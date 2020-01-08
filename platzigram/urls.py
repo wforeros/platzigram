@@ -18,12 +18,11 @@ from django.contrib import admin
 # Para que se vean las imágenes bien 
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path
+from django.urls import path, include, re_path
 
 # Local
 from platzigram import views as local_views
-from posts import views as posts_views
-from users import views as users_views
+from users import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,14 +32,10 @@ urlpatterns = [
     path('hi/<str:name>/<int:age>/', local_views.say_hi, name='hi'),
 
     # posts
-    path('', posts_views.list_posts, name='feed'),
-    path('posts/new', posts_views.create_post, name='create_post'),
+    path(r'test/', include(('posts.urls', 'posts'), namespace='posts')),
 
     # usuarios
-    path('users/login/', users_views.login_view, name='login'),
-    path('users/logout/', users_views.logout_view, name='logout'),
-    path('users/signup/', users_views.signup, name='signup'),
-    path('users/me/profile', users_views.update_profile, name='update_profile'),
+    path(r'users/', include(('users.urls', 'users'), namespace='users')),    
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
