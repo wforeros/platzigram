@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 {% block head_content %}
-<title>@{{ request.user.username }}</title>
+<title>@{{ user.username }}</title>
 {% endblock %}
 
 {% block container %}
 <div class="container mb-5" style='margin-top: 8em;'>
     <div class="row">
         <div class="col-sm-4 d-flex justify-content-center">
-            <img src="{{ request.user.profile.picture.url }}" alt="@{{ request.user.username }}" class="rounded-circle" width='150px'>
+            <img src="{{ user.profile.picture.url }}" alt="@{{ user.username }}" class="rounded-circle" width='150px'>
         </div>
         <div class="col-sm-8">
             <h2 style="font-weight: 100;">
-                {{ request.user.username }}
+                {{ user.username }}
                 {% if request.user == user %}
                     <a 
                         href="{% url 'users:update_profile' %}" 
@@ -30,13 +30,13 @@
             </h2>
             <div class="row mt-2" style='font-size: 1.2em;'>
                 <div class="col-sm-4">
-                    <b>{{ request.users.profile.posts_count }}785</b> posts
+                    <b>{{ users.profile.posts_count }}785</b> posts
                 </div>
                 <div class="col-sm-4">
-                    <b>{{ request.user.profile.followers}}1.401</b> followers
+                    <b>{{ user.profile.followers}}1.401</b> followers
                 </div>
                 <div class="col-sm-4">
-                    <b>{{ request.user.profile.following }}491</b> following
+                    <b>{{ user.profile.following }}491</b> following
                 </div>
             </div>
             <div class="row-mt-4">
@@ -48,7 +48,7 @@
     </div>
 
     <hr>
-    <!--
+    
     <div class="container" id='user-posts'>
         <div class="row mt-3">
             {% for post in posts %}
@@ -60,6 +60,5 @@
             {% endfor %}
         </div>
     </div>
--->
 </div>
 {% endblock %}
