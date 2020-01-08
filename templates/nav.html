@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg fixed-top" id="main-navbar">
     <div class="container">
 
-        <a href="{% url 'feed' %}" class="navbar-brand pr-5" style="border-right: 1px solid #efefef;">
+        <a href="{% url 'posts:feed' %}" class="navbar-brand pr-5" style="border-right: 1px solid #efefef;">
             <img src="{% static 'img/instagram.webp' %}" style="max-height: 50px;" alt="">
         </a>
 
@@ -22,13 +22,13 @@
                 </li>
 
                 <li class="nav-item nav-icon">
-                    <a href="{% url 'create_post' %}">
+                    <a href="{% url 'posts:create' %}">
                         <i class="fas fa-plus"></i>
                     </a>
                 </li>
 
                 <li class="nav-item nav-icon">
-                    <a href="{% url 'logout' %}">
+                    <a href="{% url 'users:logout' %}">
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
                 </li>
