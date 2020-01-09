@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block head_content %}
+<title>{{ post.title }} | @{{ user.username }}</title>
+{% endblock %}
+
+{% block container %}
+<div class="container pt-1 pb-1">
+    {% include "posts/post_card.html" %}
+</div>
+{% endblock %}
+
